@@ -1,0 +1,31 @@
+                <div class="row">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Pool</h4>
+                    
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Area</th>
+                                        <th>Regarding</th>
+                                        <th>Roll Number</th>
+                                        <th>Message</th>
+                                        <th>Delete</th>
+                                    </thead>
+                                    <tbody>
+                                     <% pool.forEach(function(pool) { %>  
+                                        <tr>
+                                            <td><%= pool.STOP %></td>
+                                            <td><%= pool.ROLL_NUMBER %></td>
+                                            <td><%= pool.Regarding %></td>
+                                           <td><%= pool.message %></td>
+                                           <td><button value=<%= pool.ROLL_NUMBER %> class="btn delete-pool btn-info">Delete</button></td>
+                                        </tr>
+                                        <% }); %> 
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,44 @@
+                         <div  class="row tabcontent"  id="search">
+            
+<form method="post" action="/search">
+  <div class="col-lg-12">
+    <div class="input-group">
+      <input type="text" class="form-control" name="key" placeholder="Search for Either Bus Number or Your Destination...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</form>
+
+<hr><hr>
+           
+<% if(typeof(mydata) !== 'undefined'){ mydata.forEach(function(mydata) { %>  
+  <div class="bs-example" data-example-id="simple-list-group">
+    <ul class="list-group">
+      <li class="list-group-item number"><center> <%= mydata.ID %></center></li>
+      <li class="list-group-item"><b>Destination </b>:<%= mydata.DESTINATION %></li>
+        <li class="list-group-item">
+            <% var res = mydata.STOPS.split(",");  var i; for (i = 0; i < res.length ; i++) {   %>
+        <span class="badge"><%= res[i] %></span><br>
+            <% }  %>
+      <b class="center"> Stops</b>
+      </li>
+              <li class="list-group-item">
+        <span class="badge blue"><%= mydata.PARKLOC %></span>
+         <!--<span class="badge blue">Pharmacy Side</span>-->
+         
+        <b> Parking Location</b>
+      </li>
+                    <li class="list-group-item">
+       
+         <span class="badge green"><%= mydata.DRIVER_NAME %> </span>
+         
+        <b> Driver name</b>
+      </li>
+      <li class="list-group-item"><center><button class="btn btn-danger">Route Maps</button></center></li>
+    </ul>
+  </div>
+
+   <% }); } %> 
+   </div>

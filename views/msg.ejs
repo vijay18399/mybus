@@ -1,0 +1,31 @@
+                <div class="row">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Complaints & Suggestions</h4>
+                    
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Bus ID</th>
+                                    	<th>Regarding</th>
+                                    	<th>Roll Number</th>
+                                        <th>Message</th>
+                                        <th>Delete</th>
+                                    </thead>
+                                    <tbody>
+                                     <% complaints.forEach(function(complaints) { %>  
+                                        <tr>
+                                        	<td><%= complaints.ID %></td>
+                                        	<td><%= complaints.ROLL_NUMBER %></td>
+                                        	<td><%= complaints.Regarding %></td>
+                                           <td><%= complaints.message %></td>
+                                           <td><button value=<%= complaints.ROLL_NUMBER %> class="btn delete-complaint btn-info">Delete</button></td>
+                                        </tr>
+                                        <% }); %> 
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,45 @@
+                <div class="row">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">DATA </h4>
+                    
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Bus ID</th>
+                                    	<th>STOP</th>
+                                    	<th>GROUND</th>
+                                        <th>DESTINATION</th>
+                                        <th>DRIVER_NAME</th>
+                                        <th>CONTACT</th>
+                                        <th>MTIME</th>
+                                        <th>ETIME</th>
+                                        <th>_id</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </thead>
+                                    <tbody>
+                                             <% data.forEach(function(data) { %>  
+                      <tr>
+                        <td><%= data.ID %></td>
+                        <td><%= data.STOP %></td>
+                        <td><%= data.PARKLOC %></td>
+                        <td><%= data.DESTINATION %></td>
+                        <td><%= data.DRIVER_NAME %></td>
+                        <td><%= data.CONTACT %></td>
+                        <td><%= data.MTIME %></td>
+                        <td><%= data.ETIME %></td>
+                        <td><%= data._id %></td>
+                         <td><button type="button" class="btn btn-primary edit" data-toggle="modal" data-target=".bd-example-modal-lg" value=<%= data._id %> >Edit</button></td>
+
+                          <td><button value=<%= data._id %> class="btn delete btn-info">Delete</button></td>
+                      </tr>    
+                       <% }); %> 
+                                        
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title></title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <style>
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        height: 50px;
+        width: 160px;
+        text-align: center;
+        background-color: #fff;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-image="images/bus.jpg">
+
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/" class="simple-text">
+                   Menu
+                </a>
+            </div>
+
+            <ul class="nav tab ">
+                <li>
+                    <a  onclick="openTab(event, 'upload')" id="defaultOpen" class="tablinks" >
+                        <i class="pe-7s-upload"></i>
+                        <p>Upload Bus Details</p>
+                    </a>
+                </li>
+  
+        
+                <li>
+                    <a onclick="openTab(event, 'data')"  class="tablinks">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>View data</p>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="openTab(event, 'notify')"  class="tablinks">
+                        <i class="pe-7s-paper-plane"></i>
+                        <p>Give Notification</p>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="openTab(event, 'pool')"  class="tablinks">
+                        <i class="pe-7s-look"></i>
+                        <p>Pool Requests</p>
+                    </a>
+                </li>
+         
+                        <li>
+                    <a onclick="openTab(event, 'msg')"  class="tablinks">
+                        <i class="pe-7s-bell"></i>
+                        <p>Complaints</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img  class="navbar-brand navbar-brand-centered" src="images/logo.png">
+                </div>
+                <div class="collapse navbar-collapse">
+
+
+                    <ul class="nav navbar-nav navbar-right">
+      
+
+                        <li>
+                            <a href="/logout">
+                                <p>Log out</p>
+                            </a>
+                        </li>
+						<li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+
+            <!----fields----->
+            <div class="container-fluid">
+                    <div class="row tabcontent"  id="upload" >
+                
+                     <% include upload %>
+                </div>
+          
+
+
+             
+                <div class="row tabcontent"  id="data" >
+           
+                    <% include data %>
+                 </div>
+                   <div class="row tabcontent"  id="notify" >
+           
+                    <% include notify %>
+                 </div>
+                   <div class="row tabcontent"  id="pool" >
+           
+                    <% include pool %>
+                 </div>
+                   <div class="row tabcontent"  id="msg" >
+                    <% include msg %>
+                    
+                 </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> Developed & Designed By  <i class="fa fa-love"></i><a href="#">Crazy Squad</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+                <div class="card">
+                            <div class="header">
+                                <h4 class="title">Update Bus Details</h4>
+                            </div>
+                            <div class="content">
+                                <form method="post" action="/update_data">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Bus Number </label>
+                                                <input type="text" id="ID"  name="ID" class="form-control"  placeholder="Bus Number" >
+                                            </div>
+                                        </div>
+                                             <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>id </label>
+                                                <input type="text" id="_id"  name="_id" class="form-control"  placeholder="_id" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Driver Name</label>
+                                                <input type="text" id="DRIVER_NAME" name="DRIVER_NAME" class="form-control" placeholder="Username" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Contact Number</label>
+                                                <input type="contact" id="CONTACT"  name="CONTACT" class="form-control" placeholder="Number">
+                                            </div>
+                                        </div>
+                                    </div>
+
+           
+
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Morning starting Time</label>
+                                                <input type="text" name="MTIME" id="MTIME" class="form-control" placeholder="time" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Evening Start Time </label>
+                                                <input type="text" name="ETIME" id="ETIME" class="form-control" placeholder="time" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Destination</label>
+                                                <input type="text" name="DESTINATION" id="DESTINATION" class="form-control" placeholder="Destination">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>PARKING LOCATION</label>
+                                                <input type="text" name="PARKLOC" id="PARKLOC" class="form-control" placeholder="Parking Location">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Stops </label>
+                                                <textarea  name="STOPS" id="STOPS" rows="5" class="form-control" placeholder="Here stops must be seprated with ',' only " ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Bus Details</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+
+      <script type="text/javascript">
+ 
+function openTab(evt, Tabname) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(Tabname).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+      </script>
+            <script>
+        $('.edit-notify').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/edit-notify', {
+    sno: id
+    }, function(data, xhr) {
+    var jsondata = JSON.stringify(data);
+    var data1 = JSON.parse(jsondata);
+    alert(data1[0].ID);
+   alert(data1[0]._id);
+    alert(data1[0].message);
+    $('#_id').val(data1[0]._id);
+      $('#ID').val(data1[0].ID);
+      $('#message').val(data1[0].message);
+    });
+    });
+    $('.delete-notify').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/delete-notify', {
+    sno: id
+    }, function(data, xhr) {
+    location.reload();
+    });
+    });
+</script>
+      <script>
+        $('.edit').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/edit_data', {
+    sno: id
+    }, function(data, xhr) {
+    var jsondata = JSON.stringify(data);
+    var data1 = JSON.parse(jsondata);
+    alert(data1[0].ID);
+    alert(data1[0].STOPS);
+    alert(data1[0].DESTINATION);
+    alert(data1[0].PARKLOC);
+    alert(data1[0].DRIVER_NAME);
+    alert(data1[0].CONTACT);
+    alert(data1[0].MTIME);
+    alert(data1[0].ETIME);
+    $('#_id').val(data1[0]._id);
+      $('#ID').val(data1[0].ID);
+      $('#STOPS').val(data1[0].STOPS);
+      $('#PARKLOC').val(data1[0].PARKLOC);
+      $('#DESTINATION').val(data1[0].DESTINATION);
+      $('#DRIVER_NAME').val(data1[0].DRIVER_NAME);
+      $('#CONTACT').val(data1[0].CONTACT);
+      $('#MTIME').val(data1[0].MTIME);
+      $('#ETIME').val(data1[0].ETIME);
+    });
+    });
+    $('.delete').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/remove_data', {
+    sno: id
+    }, function(data, xhr) {
+    location.reload();
+    });
+    });
+
+        $('.delete-complaint').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/delete-complaint', {
+    sno: id
+    }, function(data, xhr) {
+    location.reload();
+    });
+    });
+                $('.delete-pool').click(function() {
+    var id = $(this).val();
+    alert(id);
+    $.post('/delete-pool', {
+    sno: id
+    }, function(data, xhr) {
+    location.reload();
+    });
+    });
+</script>
+</html>

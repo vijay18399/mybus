@@ -1,0 +1,10 @@
+<div class="row tabcontent" id="notification">
+        <div class="col-lg-8 offset-lg-2">
+                                <h5>Notifications </h5>
+                                 <% notify.forEach(function(notify) { %>  
+                                <div class="alert alert-info">
+                                    <span>Regarding Bus Number (<%= notify.ID %>)  :<%= notify.message %></span>
+                                </div>
+                                      <% }); %> 
+                            </div>
+    </div>

@@ -1,0 +1,47 @@
+                   <div class="row tabcontent" id="pool_request">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Pooling Form</h4>
+                            </div>
+                            <div class="content">
+                                <form action="/pool" method="post">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Area or Stop Name</label>
+                                                <input name="STOP" type="text" class="form-control"  placeholder="Enter Your Area or Stops" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Roll Number</label>
+                                                <input type="text" name="ROLL_NUMBER" class="form-control" placeholder="Roll Number" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <label>Regarding</label>
+                                           <select  name="Regarding" class="form-control">
+                                             <option value="NPTEL EXAM">NPTEL EXAM</option>
+                                             <option value="T-HUB EVENT">T-HUB EVENT</option>
+                                             <option value="OTHER EVENTS">OTHER EVENTS</option>
+                                           </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Message</label>
+                                                <textarea rows="10" class="form-control" name="message" placeholder="Here can be your description about your message to us" ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Send Message</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
