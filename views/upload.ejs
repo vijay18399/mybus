@@ -20,3 +20,101 @@
                                 </form>
                             </div>
                         </div>
+                        <br>
+                        <br>
+                                    <div class="card">
+                            <div class="header">
+                                <h4 class="title">Add Bus Details</h4>
+                            </div>
+                            <div class="content">
+                                <form method="post" action="/add_data">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Bus Number </label>
+                                                <input type="text" id="ID"  name="ID" class="form-control"  placeholder="Bus Number" >
+                                            </div>
+                                        </div>
+                              
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Driver Name</label>
+                                                <input type="text" id="DRIVER_NAME" name="DRIVER_NAME" class="form-control" placeholder="Username" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Contact Number</label>
+                                                <input type="contact" id="CONTACT"  name="CONTACT" class="form-control" placeholder="Number">
+                                            </div>
+                                        </div>
+                                    </div>
+
+           
+
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Morning starting Time</label>
+                                                <input type="text" name="MTIME" id="MTIME" class="form-control" placeholder="time" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Evening Start Time </label>
+                                                <input type="text" name="ETIME" id="ETIME" class="form-control" placeholder="time" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Destination</label>
+                                                <input type="text" name="DESTINATION" id="DESTINATION" class="form-control" placeholder="Destination">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>PARKING LOCATION</label>
+                                                <input type="text" name="PARKLOC" id="PARKLOC" class="form-control" placeholder="Parking Location">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Stops </label>
+                                                <textarea  name="STOPS" id="STOPS" rows="5" class="form-control" placeholder="Here stops must be seprated with ',' only " ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Add Bus Details</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <hr>
+                                             <div class="card">
+                            <div class="header">
+                                <h4 class="title">Upload Student  List</h4>
+                            </div>
+                            <div class="content">
+                                <form action="/uploadxlsx2" method="post" enctype="multipart/form-data">
+                               
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label> File Need to be excel</label>
+                                                <input type="file" class="form-control" name="file" placeholder="file" >
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Upload  Details</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>

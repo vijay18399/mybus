@@ -43,6 +43,9 @@
     .navbar>.container-fluid .navbar-brand-centered {
         margin-left: -80px;
     }
+    .hide{
+        display: none;
+    }
 </style>
 </head>
 <body>
@@ -67,7 +70,12 @@
                         <p>Upload Bus Details</p>
                     </a>
                 </li>
-  
+                 <li>
+                    <a onclick="openTab(event, 'allocations')"  class="tablinks">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Do allocations</p>
+                    </a>
+                </li>
         
                 <li>
                     <a onclick="openTab(event, 'data')"  class="tablinks">
@@ -92,6 +100,12 @@
                     <a onclick="openTab(event, 'msg')"  class="tablinks">
                         <i class="pe-7s-bell"></i>
                         <p>Complaints</p>
+                    </a>
+                </li>
+                            <li>
+                    <a onclick="openTab(event, 'delete')"  class="tablinks">
+                        <i class="pe-7s-bell"></i>
+                        <p>Delete</p>
                     </a>
                 </li>
             </ul>
@@ -132,14 +146,16 @@
 
             <!----fields----->
             <div class="container-fluid">
+
                     <div class="row tabcontent"  id="upload" >
                 
                      <% include upload %>
                 </div>
-          
+                        <div class="row tabcontent"  id="allocations" >
+           
+                    <% include allocations %>
+                 </div>
 
-
-             
                 <div class="row tabcontent"  id="data" >
            
                     <% include data %>
@@ -154,6 +170,10 @@
                  </div>
                    <div class="row tabcontent"  id="msg" >
                     <% include msg %>
+                    
+                 </div>
+                      <div class="row tabcontent"  id="delete" >
+                    <% include delete %>
                     
                  </div>
         </div>
@@ -382,4 +402,42 @@ document.getElementById("defaultOpen").click();
     });
     });
 </script>
+<script>
+      $('#search').click(function() {
+      var key = $("#key2").val();
+
+    alert(key);
+    $.post('/get_students', {
+    sno: key
+    }, function(data, xhr) {
+    var jsondata = JSON.stringify(data);
+    var data1 = JSON.parse(jsondata);
+    alert(data1.length);
+    for (var i = 0; i < data1.length; i++) {
+       $('#myTable').append('<tr><td>'+data1[i].NAME+'</td><td>'+data1[i].ROLL_NUMBER+'</td><td>'+data1[i].HOME_TOWN+'</td><td>'+data1[i].PASSING_YEAR+'</td><td>'+data1[i].COLLEGE+'</td><td>'+data1[i].GROUP+'</td></tr>');
+    }
+
+    });
+    });
+    </script>
+    <script>
+      $('#options').click(function() {
+      var key = $("#key").val();
+
+    alert(key);
+    $.post('/options', {
+    sno: key
+    }, function(data, xhr) {
+    var jsondata = JSON.stringify(data);
+    var data1 = JSON.parse(jsondata);
+     for (var i = 0; i < data1.docs.length; i++) {
+       $('#details').append('<tr><td>'+data1.docs[i].NAME+'</td><td>'+data1.docs[i].ROLL_NUMBER+'</td><td>'+data1.docs[i].HOME_TOWN+'</td><td>'+data1.docs[i].PASSING_YEAR+'</td><td>'+data1.docs[i].COLLEGE+'</td><td>'+data1.docs[i].GROUP+'</td></tr>');
+    }
+         for (var i = 0; i < data1.docs2.length; i++) {
+       $('#buses').append('<tr><td>'+data1.docs2[i].ID+'</td><td>'+data1.docs2[i].COUNT+'</td><td>'+data1.docs2[i].STOPS+'</td></tr>');
+    }
+
+    });
+    });
+    </script>
 </html>

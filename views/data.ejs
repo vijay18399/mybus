@@ -15,7 +15,8 @@
                                         <th>CONTACT</th>
                                         <th>MTIME</th>
                                         <th>ETIME</th>
-                                        <th>_id</th>
+                                           <th>COUNT</th>
+                                        <th class="hide">_id</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </thead>
@@ -23,14 +24,15 @@
                                              <% data.forEach(function(data) { %>  
                       <tr>
                         <td><%= data.ID %></td>
-                        <td><%= data.STOP %></td>
+                        <td><%= data.STOPS %></td>
                         <td><%= data.PARKLOC %></td>
                         <td><%= data.DESTINATION %></td>
                         <td><%= data.DRIVER_NAME %></td>
                         <td><%= data.CONTACT %></td>
                         <td><%= data.MTIME %></td>
                         <td><%= data.ETIME %></td>
-                        <td><%= data._id %></td>
+                        <td><%= data.COUNT %></td>
+                        <td class="hide"><%= data._id %></td>
                          <td><button type="button" class="btn btn-primary edit" data-toggle="modal" data-target=".bd-example-modal-lg" value=<%= data._id %> >Edit</button></td>
 
                           <td><button value=<%= data._id %> class="btn delete btn-info">Delete</button></td>
