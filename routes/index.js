@@ -6,6 +6,7 @@ var db=monk('localhost:27017/mybus');
 var data=db.get('data');
 var notify=db.get('notify');
 var pool=db.get('pool');
+var students=db.get('students');
 var users=db.get('users');
 var complaints=db.get('complaints');
 
@@ -95,13 +96,15 @@ router.get('/admin', function(req, res) {
       notify.find({},function(err,notify){
      complaints.find({},function(err,complaints){
        pool.find({},function(err,pool){
+         students.find({},function(err,students){
         res.locals.data = data;
         res.locals.notify = notify;
       res.locals.messages = messages;
        res.locals.complaints = complaints;
         res.locals.pool = pool;
+         res.locals.students = students;
  res.render('admin');
-     });  }); });  });  }); 
+     });  }); });  });  });   }); 
 }
 
 
@@ -142,6 +145,70 @@ res.redirect('/admin');
 
 });
   
+});
+router.post('/uploadxlsx2', upload.single('file'), function(req, res, next) {
+   
+
+var location ='public/uploads/'+req.file.originalname;
+xlsx2json(location,
+    {
+        
+        mapping: {
+            'NAME': 'A',
+            'ROLL_NUMBER': 'B',
+            'HOME_TOWN': 'C',
+            'PASSING_YEAR': 'D',
+            'COLLEGE': 'E',
+            'GROUP':'F',
+            'PASSWORD':'G'
+        }
+    }).then(jsonArray => {
+var i;
+for (i = 0; i < jsonArray.length; i++) {
+  console.log(jsonArray[i]);
+    students.insert(jsonArray[i], function(err,data){
+console.log(data);
+res.redirect('/admin');
+    
+});
+} 
+
+});
+  
+});
+
+router.post('/allocate', function(req, res) {
+
+ok ={
+    ID : req.body.ID
+  }
+ 
+
+    students.update({"ROLL_NUMBER" : req.body.ROLL_NUMBER},{$set:ok}, function(err,docs){
+       data.update(ok,{ $inc: { COUNT: +1 } } , function(err,docs2){ 
+    console.log(docs);
+      console.log(docs2);
+    res.redirect('/admin');
+    });
+  });
+  });
+router.post('/add_data', function(req, res) {
+   
+  var some = { 
+    ID : req.body.ID,
+    STOPS : req.body.STOPS,
+    PARKLOC : req.body.PARKLOC,
+    DESTINATION : req.body.DESTINATION,
+    DRIVER_NAME : req.body.DRIVER_NAME,
+    CONTACT : req.body.CONTACT,
+      MTIME : req.body.MTIME ,
+       ETIME : req.body.ETIME
+         }
+         console.log(some);
+  data.insert(some, function(err,docs){
+    console.log(docs);
+    res.redirect('/admin');
+  });
 });
 router.post('/edit_data', function(req, res) {
     console.log(req.body.sno);
@@ -198,6 +265,35 @@ router.post('/delete-notify', function(req, res) {
       res.send(docs);
     });
 });
+router.post('/get_students', function(req, res) {
+      console.log(req.body.sno);
+    var id = req.body.sno;
+       students.find({"ID" : id },function(err,docs){
+            console.log(docs);
+         res.send(docs);
+     }); 
+
+      });
+router.post('/options', function(req, res) {
+      console.log(req.body.sno);
+    var id = req.body.sno;
+       students.find({"ROLL_NUMBER" : id },function(err,docs){
+      var area = docs[0].HOME_TOWN;
+      console.log(area);
+         data.find({ STOPS: { $regex: area , $options: "x" }} ,function(err,docs2){
+          var x={
+              "docs":docs,
+              "docs2":docs2
+                 }
+          console.log(x);
+         res.send(x);
+        
+     }); 
+
+      });
+     });
+
+
 router.post('/search', function(req, res) {
     console.log(req.body.key);
  
@@ -273,4 +369,28 @@ router.post('/delete-pool', function(req, res) {
       res.send(docs);
     });
 });
+router.post('/delete', function(req, res) {
+    console.log(req.body.PASSING_YEAR);
+    var PASSING_YEAR = req.body.PASSING_YEAR;
+
+    
+        students.find({"PASSING_YEAR":PASSING_YEAR}, function(err,batch){
+           console.log(batch);
+              console.log(batch.length);
+              var myarray = new Array();
+              for (var i = 0; i < batch.length; i++) {
+                myarray[i] =batch[i].ID;
+               } 
+         console.log(myarray);
+        
+         
+     data.update({ID:{$in:myarray}},{ $inc: { COUNT: -1 } } , function(err,docs2){ 
+        students.remove({"PASSING_YEAR":PASSING_YEAR}, function(err,docs){
+        console.log(docs);
+     res.redirect('/admin');
+        });
+    }); 
+    });
+});
+
 module.exports = router;
